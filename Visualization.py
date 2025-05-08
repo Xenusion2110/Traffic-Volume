@@ -1,5 +1,4 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 Traffic_data = pd.read_csv("/Users/Neal/Python/BigDataProject/Automated_Traffic_Volume_Counts_20250427.csv",usecols=['Yr', 'M', 'D', 'HH','Boro','street','Vol' ])
@@ -75,5 +74,3 @@ plt.title('Most Affected Streets During Rain Or Snow')
 
 # function to show the plot
 plt.show()
-
-print('Lol')
