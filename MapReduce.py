@@ -45,48 +45,34 @@ print("A Traffic hotspot is " , reduce_function_Hotspot(temp))
 
 def map_function_Trend(a):
     List = a
-    s = List['street'].tolist()
     y = List['Yr']
     v = List['Vol'].tolist()
-    return [s,y,v]
+    return [y,v]
 
 
-def reduce_function_Trend2(list1, list2):
-    list1 = list1
-    list2 = list2
-    idx = 0
-    max_vol1 = list1[0]
-    max_vol2 = list2[0]
-    for i in list1:
-        if list1[i] > max_vol1:
-            max_vol1 = list1[i]
-            idx = i
-    v1 = idx
-    for i in list2:
-        if list2[i] > max_vol2:
-            max_vol2 = list2[i]
-            idx = i
-    v2 = idx
+def reduce_function_Trend2(v1, v2):
+    
     voldiff = v2 - v1
     trend = (voldiff/v1) * 100
     return trend
-
     
 
 def reduce_function_Trend1(list, year):
     list = list
     idx = 0
-    v = []
+    max_vol = 0
     year = year
     for i in range(1, len(Traffic_data)):
-        if list[1][i] == year:
-            v.append(list[2][i])
-    return v
+        if list[0][i] == year:
+            if list[1][i] > max_vol:
+                max_vol = list[1][i]
+                idx = i
+    return list[1][idx]
 
 temp = map_function_Trend(Traffic_data)
 l = reduce_function_Trend1(temp, 2015)
 l2 = reduce_function_Trend1(temp, 2024)
-print("The volume for rain has changed by ", reduce_function_Trend2(l,l2))
+print("The volume for rain has changed by ", reduce_function_Trend2(l,l2), "%")
 
 
 #Most Affected during Hazardous weather
@@ -123,6 +109,14 @@ print("The areas most affected by weather are ", w[0], " and ", w[1])
 
 
     
+
+
+
+
+    
+    
+
+
 
 
 
